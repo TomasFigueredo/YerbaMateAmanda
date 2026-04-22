@@ -54,17 +54,17 @@ const cargarContenido = async () => {
         if (!res.ok) throw new Error('No encontrado'); 
         const pagina = await res.json(); 
             
-        document.getElementById('titulo').textContent    = pagina.titulo || ''; 
-        document.getElementById('subtitulo').textContent = pagina.subtitulo || ''; 
-        document.getElementById('pageTitle').textContent = pagina.titulo || 'Sitio'; 
+        document.getElementById('titulo').textContent    = pagina.Titulo || ''; 
+        document.getElementById('subtitulo').textContent = pagina.SubTitulo || ''; 
+        document.getElementById('pageTitle').textContent = pagina.Titulo || 'Sitio'; 
             
         const metaDesc = document.getElementById('metaDesc'); 
         if (metaDesc) metaDesc.content = pagina.meta_descripcion || ''; 
             
         // Rich Text (ver sección 12) 
         const cuerpoEl = document.getElementById('cuerpo'); 
-        if (cuerpoEl && pagina.cuerpo) { 
-            cuerpoEl.innerHTML = richTextToHtml(pagina.cuerpo); 
+        if (cuerpoEl && pagina.Cuerpo) { 
+            cuerpoEl.innerHTML = richTextToHtml(pagina.Cuerpo); 
     } 
     } catch (err) { 
         document.getElementById('titulo').textContent = 'Página no disponible'; 
