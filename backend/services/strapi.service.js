@@ -16,20 +16,21 @@ const cachedGet = async(URL) =>{
     const {data} = await strapi_client.get(URL)
     cache.set(URL, {data, expire: now+TTL_MS})
     return data
-}
+};
 const get_page= async(slug) =>{
     const data = await cachedGet(`/api/paginas?filters[slug][$eq]=${slug}&populate=*`)
+    console.log(`CONSTANTE DATA: ${data}`)
     const items = data.data
     if(!items||items.length == 0){
         return null
     }
     return items[0]
-}
+};
 
 const get_all_pages= async() =>{
     const data = await cachedGet("/api/paginas?populate=*")
     return data.data.map(p=>p)
-}
+};
 
 const clean_cache= ()=>cache.clear()
 

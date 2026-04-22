@@ -50,25 +50,25 @@ alt='${block.image?.alternativeText || ''}'>`;
 
 const cargarContenido = async () => { 
     try { 
-    const res = await fetch(`/api/contenido/${slug}`); 
-    if (!res.ok) throw new Error('No encontrado'); 
-    const pagina = await res.json(); 
-        
-    document.getElementById('titulo').textContent    = pagina.titulo || ''; 
-    document.getElementById('subtitulo').textContent = pagina.subtitulo || ''; 
-    document.getElementById('pageTitle').textContent = pagina.titulo || 'Sitio'; 
-        
-    const metaDesc = document.getElementById('metaDesc'); 
-    if (metaDesc) metaDesc.content = pagina.meta_descripcion || ''; 
-        
-    // Rich Text (ver sección 12) 
-    const cuerpoEl = document.getElementById('cuerpo'); 
-    if (cuerpoEl && pagina.cuerpo) { 
-        cuerpoEl.innerHTML = richTextToHtml(pagina.cuerpo); 
+        const res = await fetch(`/api/content/${slug}`); 
+        if (!res.ok) throw new Error('No encontrado'); 
+        const pagina = await res.json(); 
+            
+        document.getElementById('titulo').textContent    = pagina.titulo || ''; 
+        document.getElementById('subtitulo').textContent = pagina.subtitulo || ''; 
+        document.getElementById('pageTitle').textContent = pagina.titulo || 'Sitio'; 
+            
+        const metaDesc = document.getElementById('metaDesc'); 
+        if (metaDesc) metaDesc.content = pagina.meta_descripcion || ''; 
+            
+        // Rich Text (ver sección 12) 
+        const cuerpoEl = document.getElementById('cuerpo'); 
+        if (cuerpoEl && pagina.cuerpo) { 
+            cuerpoEl.innerHTML = richTextToHtml(pagina.cuerpo); 
     } 
     } catch (err) { 
-    document.getElementById('titulo').textContent = 'Página no disponible'; 
-    console.error('Error cargando contenido:', err); 
+        document.getElementById('titulo').textContent = 'Página no disponible'; 
+        console.error('Error cargando contenido:', err); 
     } 
 }; 
 

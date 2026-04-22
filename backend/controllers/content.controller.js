@@ -1,9 +1,12 @@
+const { json } = require("express")
 const {get_page, get_all_pages, clean_cache} = require("../services/strapi.service")
 
 exports.getPage = async(req, res) =>{
     try{
         const {slug} = req.params
+        console.log(`ESTE ES EL SLUG ENVIADO: ${slug}`)
         const page = await get_page(slug)
+        console.log(`DATOS DE LA PAGINA: `, JSON.stringify(page, null, 2))
         if(!page){
             return res.status(404).json({error: "Pagina no encontrada"})
         }
